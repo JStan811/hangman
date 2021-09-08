@@ -30,3 +30,6 @@ guessed_letter = player_test.guessed_letter
 computer_test.update_word_board(guessed_letter)
 word_board = computer_test.word_board
 puts word_board
+
+puts "Correct guesses: #{computer_test.correct_guesses}"
+puts "Incorrect guesses: #{computer_test.incorrect_guesses}"

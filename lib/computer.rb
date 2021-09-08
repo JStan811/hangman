@@ -4,8 +4,12 @@ module Hangman
   # The computer that will be picking the word to guess, managing the hangman, and providing feedback to the player
   class Computer
     # potential attributes: selected_word
+    def initialize
+      @correct_guesses = ''
+      @incorrect_guesses = ''
+    end
 
-    attr_reader :selected_word, :word_board
+    attr_reader :selected_word, :word_board, :correct_guesses, :incorrect_guesses
 
     # potential methods: read dictionary, select word, give feedback, update hangman (update guesses remaining), update correct list, update incorrect list
     def select_word(dictionary)
@@ -38,6 +42,9 @@ module Hangman
         end
         # join word board back into string and update @word_board
         @word_board = word_board_array.join ' '
+        @correct_guesses += "#{guessed_letter} "
+      else
+        @incorrect_guesses += "#{guessed_letter} "
       end
     end
   end
