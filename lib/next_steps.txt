@@ -1,0 +1,6 @@
+- limit player letter entry to one character
+
+optional:
+- add ability to choose incorrect chance limit
+- new game + score keeper
+- stick figure display
