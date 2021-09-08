@@ -7,9 +7,10 @@ module Hangman
     def initialize
       @correct_guesses = ''
       @incorrect_guesses = ''
+      @incorrect_chances = 6
     end
 
-    attr_reader :selected_word, :word_board, :correct_guesses, :incorrect_guesses
+    attr_reader :selected_word, :word_board, :correct_guesses, :incorrect_guesses, :incorrect_chances
 
     # potential methods: read dictionary, select word, give feedback, update hangman (update guesses remaining), update correct list, update incorrect list
     def select_word(dictionary)
@@ -45,6 +46,7 @@ module Hangman
         @correct_guesses += "#{guessed_letter} "
       else
         @incorrect_guesses += "#{guessed_letter} "
+        @incorrect_chances -= 1
       end
     end
   end

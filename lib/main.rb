@@ -33,3 +33,28 @@ puts word_board
 
 puts "Correct guesses: #{computer_test.correct_guesses}"
 puts "Incorrect guesses: #{computer_test.incorrect_guesses}"
+puts "Remaining incorrect chances: #{computer_test.incorrect_chances}"
+
+puts 'Enter your letter:'
+player_test.guess_letter
+guessed_letter = player_test.guessed_letter
+
+computer_test.update_word_board(guessed_letter)
+word_board = computer_test.word_board
+puts word_board
+
+puts "Correct guesses: #{computer_test.correct_guesses}"
+puts "Incorrect guesses: #{computer_test.incorrect_guesses}"
+puts "Remaining incorrect chances: #{computer_test.incorrect_chances}"
+
+puts 'Enter your letter:'
+player_test.guess_letter
+guessed_letter = player_test.guessed_letter
+
+computer_test.update_word_board(guessed_letter)
+word_board = computer_test.word_board
+puts word_board
+
+puts "Correct guesses: #{computer_test.correct_guesses}"
+puts "Incorrect guesses: #{computer_test.incorrect_guesses}"
+puts "Remaining incorrect chances: #{computer_test.incorrect_chances}"
