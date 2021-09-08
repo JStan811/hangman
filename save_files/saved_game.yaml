@@ -1,0 +1,15 @@
+--- !ruby/object:Hangman::Game
+player: !ruby/object:Hangman::Player
+  load_selection: n
+  guessed_letter: a
+  save_selection: y
+computer: !ruby/object:Hangman::Computer
+  correct_guesses: ''
+  incorrect_guesses: 'a '
+  incorrect_chances: 5
+  selected_word: creek
+  word_board: '_ _ _ _ _ '
+save_manager: !ruby/object:Hangman::SaveManager
+  game_saved: true
+dictionary_filename: 5desk.txt
+dictionary: []

@@ -1,7 +1,11 @@
 - limit player letter entry to one character
+- clean up player save selection method. make sure its 'y' or 'n', etc.
 
 optional:
 - add ability to choose incorrect chance limit
 - new game + score keeper
 - stick figure display
 - improve player letter entry error checking in GameMaster::player_turn
+- add ability to custom name save file
+- error check if a saved game exists
+- give player choice to choose from multiple save files

@@ -2,18 +2,29 @@
 
 module Hangman
   # represents entity managing the game
-  class GameMaster
+  class Game
     # potential attributes: computer object, player object
-    def initialize(player, computer)
+    def initialize(player, computer, save_manager)
       @player = player
       @computer = computer
+      @save_manager = save_manager
       @dictionary_filename = '5desk.txt'
     end
 
     def play_game
-      puts 'Welcome to Hangman. You must guess the word to save a man from the rope! Good luck...'
-      load_dictionary(@dictionary_filename)
-      computer_initial_turn
+      if @save_manager.game_saved == false
+        puts 'Welcome to Hangman. You must guess the word to save a man from the rope! Good luck...'
+        load_dictionary(@dictionary_filename)
+        computer_initial_turn
+      else
+        puts "Welcome back!"
+        puts @computer.word_board
+
+        puts "Correct guesses: #{@computer.correct_guesses}"
+        puts "Incorrect guesses: #{@computer.incorrect_guesses}"
+        puts "Remaining incorrect chances: #{@computer.incorrect_chances}"
+        puts ''
+      end
       turn_loop
     end
 
@@ -28,8 +39,9 @@ module Hangman
     end
 
     def computer_initial_turn
-      @computer.select_word(dictionary)
-
+      @computer.select_word(@dictionary)
+      # after selecting word, wipe dictionary to reduce size of save files
+      @dictionary = []
       @computer.create_word_board
       word_board = @computer.word_board
       puts word_board
@@ -67,6 +79,13 @@ module Hangman
     def turn_loop
       loop do
         run_a_turn
+        puts 'Would you like to save and exit? Enter y for yes or n for no.'
+        @player.make_save_selection
+        if @player.save_selection == 'y'
+          @save_manager.save_game(self)
+          puts "Thanks for playing!"
+          break
+        end
         if @computer.incorrect_chances.zero?
           puts "You were unable to get the word in time and thus the man has been sent to the gallows."
           puts "Correct word: #{@computer.selected_word}"
