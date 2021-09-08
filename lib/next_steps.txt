@@ -4,3 +4,4 @@ optional:
 - add ability to choose incorrect chance limit
 - new game + score keeper
 - stick figure display
+- improve player letter entry error checking in GameMaster::player_turn

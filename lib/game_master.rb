@@ -11,6 +11,7 @@ module Hangman
     end
 
     def play_game
+      puts 'Welcome to Hangman. You must guess the word to save a man from the rope! Good luck...'
       load_dictionary(@dictionary_filename)
       computer_initial_turn
       turn_loop
@@ -28,15 +29,13 @@ module Hangman
 
     def computer_initial_turn
       @computer.select_word(dictionary)
-      selected_word = @computer.selected_word
-      puts selected_word
 
       @computer.create_word_board
       word_board = @computer.word_board
       puts word_board
     end
 
-    def player_turn
+    def player_turn_loop
       loop do
         puts 'Enter a letter:'
         @player.guess_letter
@@ -53,7 +52,7 @@ module Hangman
     end
 
     def run_a_turn
-      player_turn
+      player_turn_loop
 
       @computer.update_word_board(@player.guessed_letter)
       word_board = @computer.word_board
@@ -62,16 +61,18 @@ module Hangman
       puts "Correct guesses: #{@computer.correct_guesses}"
       puts "Incorrect guesses: #{@computer.incorrect_guesses}"
       puts "Remaining incorrect chances: #{@computer.incorrect_chances}"
+      puts ''
     end
 
     def turn_loop
       loop do
         run_a_turn
         if @computer.incorrect_chances.zero?
-          puts "Unfortunately you've run out of guesses and the man has been hanged. Big rip"
+          puts "You were unable to get the word in time and thus the man has been sent to the gallows."
+          puts "Correct word: #{@computer.selected_word}"
           break
         elsif !(@computer.word_board.include? '_')
-          puts "You've managed to guess the word and the man lives!"
+          puts "Well done! You saved a man's life today."
           break
         end
       end
